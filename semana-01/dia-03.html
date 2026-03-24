@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formularios</title>
+  </head>
+  <body>
+    <h1>Formularios</h1>
+
+    <form action="/enviar" method="POST">
+      <!-- Texto simple -->
+      <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" />
+      </div>
+
+      <div>
+        <!-- Email — valida formato automáticamente -->
+        <label for="email">Email:</label>
+        <input type="email" name="email" placeholder="tu@email.com" />
+      </div>
+
+      <div>
+        <label for="clave">Clave:</label>
+        <input type="password" name="clave" />
+      </div>
+
+      <div>
+        <!-- Número con rango -->
+        <label for="edad">Edad:</label>
+        <input type="number" name="edad" min="1" max="99" />
+      </div>
+
+      <div>
+        <!-- Fecha -->
+        <label for="fecha">Fecha:</label>
+        <input type="date" name="fecha" />
+      </div>
+
+      <div>
+        <!-- Radio: elegir UNA opción (mismo name = mismo grupo) -->
+        <label for="horas">Horas:</label>
+        <input type="radio" id="h1" name="horas" value="1" />
+        <label for="h1">1 hora</label>
+        <input type="radio" id="h2" name="horas" value="2" />
+        <label for="h2">2 horas</label>
+      </div>
+
+      <div>
+        <!-- Checkbox: elegir UNA O VARIAS opciones -->
+        <label for="tech">Tech:</label>
+        <input type="checkbox" id="vue" name="tech" value="vue" checked />
+        <label for="vue">Vue.js</label>
+      </div>
+
+      <div>
+        <!-- Select: lista desplegable -->
+        <label for="nivel">Nivel:</label>
+        <select id="nivel" name="nivel">
+          <option value="">-- Elegí una opción --</option>
+          <option value="principiante">Principiante</option>
+          <option value="intermedio">Intermedio</option>
+        </select>
+      </div>
+
+      <div>
+        <!-- Texto largo multilinea -->
+        <label for="msg">Mensaje:</label>
+        <textarea
+          id="msg"
+          name="msg"
+          rows="4"
+          placeholder="Tu mensaje..."
+        ></textarea>
+      </div>
+
+      <div>
+        <!-- Botones -->
+        <button type="submit">Enviar</button>
+        <button type="reset">Limpiar</button>
+        <button type="button">Acción JS</button>
+      </div>
+
+      <div>
+        <!-- Agrupar campos relacionados -->
+        <fieldset>
+          <legend>Datos personales</legend>
+          <input type="text" id="nombre" name="nombre" />
+        </fieldset>
+      </div>
+    </form>
+  </body>
+</html>
