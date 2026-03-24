@@ -1,0 +1,379 @@
+/* ── VARIABLES CSS ── */
+:root {
+  --color-primario: #1a56db;
+  --color-primario-claro: #eff6ff;
+  --color-texto: #111827;
+  --color-texto-suave: #6b7280;
+  --color-borde: #e5e7eb;
+  --color-fondo: #f9fafb;
+  --color-blanco: #ffffff;
+  --radio-borde: 10px;
+  --sombra: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --fuente: Arial, sans-serif;
+}
+
+/* ── RESET ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+}
+
+/* ── HEADER ── */
+header {
+  background-color: var(--color-primario);
+  padding: 40px 32px 32px;
+  text-align: center;
+}
+
+header h1 {
+  color: var(--color-blanco);
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+header > p {
+  color: #bfdbfe;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+header nav a {
+  color: #bfdbfe;
+  text-decoration: none;
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+header nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-blanco);
+}
+
+/* ── LAYOUT PRINCIPAL ── */
+.layout-principal {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+aside {
+  align-self: start;
+}
+
+/* ── SECCIONES ── */
+section {
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--sombra);
+}
+
+section h2 {
+  font-size: 22px;
+  color: var(--color-primario);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-primario-claro);
+}
+
+section h3 {
+  font-size: 17px;
+  color: var(--color-texto);
+  margin: 16px 0 8px;
+}
+
+section p {
+  color: var(--color-texto-suave);
+  margin-bottom: 8px;
+}
+
+/* ── FIGURE ── */
+figure {
+  text-align: center;
+  margin: 16px 0;
+}
+
+figure img {
+  width: 80px;
+  height: 80px;
+}
+
+figcaption {
+  color: var(--color-texto-suave);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* ── LISTAS ── */
+ul,
+ol {
+  padding-left: 20px;
+  color: var(--color-texto-suave);
+}
+
+ul li,
+ol li {
+  margin-bottom: 6px;
+}
+
+/* ── GLOSARIO ── */
+dl dt {
+  font-weight: 700;
+  color: var(--color-primario);
+  margin-top: 12px;
+}
+
+dl dd {
+  color: var(--color-texto-suave);
+  margin-left: 16px;
+  font-size: 14px;
+}
+
+/* ── TABLA ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+thead tr {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--color-fondo);
+}
+
+tbody tr:last-child {
+  background-color: var(--color-primario-claro);
+  font-weight: 600;
+}
+
+tbody td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--color-borde);
+  color: var(--color-texto-suave);
+}
+
+/* ── ARTICLES DEL BLOG ── */
+article {
+  border-left: 3px solid var(--color-primario);
+  padding-left: 16px;
+  margin-bottom: 20px;
+}
+
+article h3 {
+  color: var(--color-texto);
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+article time {
+  font-size: 12px;
+  color: var(--color-texto-suave);
+  display: block;
+  margin-bottom: 6px;
+}
+
+article p {
+  font-size: 14px;
+}
+
+/* ── ASIDE ── */
+aside {
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 24px;
+  box-shadow: var(--sombra);
+}
+
+aside h2 {
+  font-size: 18px;
+  color: var(--color-primario);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-primario-claro);
+}
+
+aside ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+aside ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-borde);
+  font-size: 14px;
+  color: var(--color-texto-suave);
+}
+
+aside a {
+  display: block;
+  text-align: center;
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+/* ── FORMULARIO DE CONTACTO ── */
+#contacto {
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 28px;
+  margin: 0 auto 40px;
+  max-width: 1100px;
+  box-shadow: var(--sombra);
+}
+
+#contacto h2 {
+  font-size: 22px;
+  color: var(--color-primario);
+  margin-bottom: 8px;
+}
+
+#contacto > p {
+  color: var(--color-texto-suave);
+  margin-bottom: 20px;
+}
+
+fieldset {
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+legend {
+  font-weight: 700;
+  color: var(--color-primario);
+  padding: 0 8px;
+  font-size: 15px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-texto);
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: var(--fuente);
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  background-color: var(--color-blanco);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button[type="submit"] {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+button[type="reset"] {
+  background-color: transparent;
+  color: var(--color-texto-suave);
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 16px;
+  margin-left: 8px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background-color: #1e1e2e;
+  color: #9ca3af;
+  text-align: center;
+  padding: 24px;
+  font-size: 14px;
+}
+
+footer nav {
+  margin-top: 8px;
+}
+
+footer nav a {
+  color: #6b7280;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+footer nav a:hover {
+  color: var(--color-blanco);
+}
+
+footer small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #4b5563;
+}

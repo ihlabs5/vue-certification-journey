@@ -28,8 +28,8 @@ vue-certification-journey/
 | #   | Tecnología                       | Estado        | Semana |
 | --- | -------------------------------- | ------------- | ------ |
 | 1   | HTML                             | ✅ Completado | 1      |
-| 2   | CSS                              | 🔄Pendiente   | 2      |
-| 3   | JavaScript                       | ⏳ Pendiente  | 3-4    |
+| 2   | CSS                              | ✅ Pendiente  | 2      |
+| 3   | JavaScript                       | 🔄 Pendiente  | 3-4    |
 | 4   | Vue.js Core + Composition API    | ⏳ Pendiente  | 5-7    |
 | 5   | Vue Router + Pinia               | ⏳ Pendiente  | 8-9    |
 | 6   | Composables + patrones avanzados | ⏳ Pendiente  | 10     |

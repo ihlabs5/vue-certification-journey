@@ -1,0 +1,112 @@
+/* ── RESET ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── BASE ── */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #111827;
+  background-color: #f9fafb;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 32px;
+  color: #1a56db;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+/* ── TARJETAS ── */
+.tarjeta {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+
+.tarjeta-redondeada {
+  border-radius: 12px;
+  border-color: #1a56db;
+}
+
+.tarjeta-solo-izquierda {
+  border: none;
+  border-left: 4px solid #1a56db;
+  background-color: #eff6ff;
+  padding-left: 20px;
+}
+
+/* ── CAJA CENTRADA ── */
+.caja-centrada {
+  width: 400px;
+  margin: 30px auto;
+  background-color: #ffffff;
+  border: 2px solid #1a56db;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+}
+
+/* ── PERFIL CON AVATAR CIRCULAR ── */
+.perfil {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  max-width: 400px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #1a56db;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.perfil-info h3 {
+  font-size: 18px;
+  color: #111827;
+}
+
+.perfil-info p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ── DEMO PADDING VS MARGIN ── */
+.demo-padding {
+  background-color: #bfdbfe;
+  padding: 30px;
+  margin-bottom: 10px;
+  max-width: 500px;
+}
+
+.demo-margin {
+  background-color: #bbf7d0;
+  padding: 10px;
+  margin: 30px 0;
+  max-width: 500px;
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox</title>
+    <link rel="stylesheet" href="dia-08.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <strong>Vue.js Dev</strong>
+      </div>
+      <ul class="navbar-links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Proyectos</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <main class="contenido-principal">
+      <section class="seccion">
+        <h2>Centrado perfecto</h2>
+        <div class="caja-centrado">
+          <p>Estoy perfectamente centrado con justify-content + align-items</p>
+        </div>
+      </section>
+
+      <section class="seccion">
+        <h2>Tarjetas con flex-wrap</h2>
+        <div class="lista-tarjetas">
+          <div class="tarjeta">
+            <h3>HTML</h3>
+            <p>Semana 1 — Completada ✅</p>
+          </div>
+          <div class="tarjeta">
+            <h3>CSS</h3>
+            <p>Semana 2 — En progreso 🔄</p>
+          </div>
+          <div class="tarjeta">
+            <h3>JavaScript</h3>
+            <p>Semana 3-4 — Pendiente ⏳</p>
+          </div>
+          <div class="tarjeta">
+            <h3>Vue.js</h3>
+            <p>Semana 5-7 — Pendiente ⏳</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion">
+        <h2>Layout sidebar + contenido</h2>
+        <div class="layout-sidebar">
+          <aside class="sidebar">
+            <h3>Sidebar</h3>
+            <ul>
+              <li>Enlace 1</li>
+              <li>Enlace 2</li>
+              <li>Enlace 3</li>
+            </ul>
+          </aside>
+          <div class="contenido">
+            <h3>Contenido principal</h3>
+            <p>Este bloque ocupa todo el espacio restante gracias a flex: 1.</p>
+            <p>El sidebar tiene un ancho fijo de 200px con flex: none.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion">
+        <h2>Perfil de usuario</h2>
+        <div class="perfil">
+          <div class="avatar">iH</div>
+          <div class="perfil-info">
+            <h3>ihlabs5</h3>
+            <p>Desarrollador Frontend Jr. en formación</p>
+            <p>🎯 Certificación Vue.js Mid-Level en progreso</p>
+          </div>
+          <button class="btn-seguir">Seguir</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
