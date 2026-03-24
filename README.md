@@ -52,3 +52,13 @@ vue-certification-journey/
 | `dia-03.html`             | Formularios: inputs, radio, checkbox, select, textarea |
 | `dia-04.html`             | Semántica: header, nav, main, section, article, footer |
 | `proyecto-semana-01.html` | Proyecto integrador: página de perfil profesional      |
+
+## 📁 Contenido — Semana 2: HTML
+
+| Archivo                   | Contenido                                          |
+| ------------------------- | -------------------------------------------------- |
+| `dia-06.html`             | Selectores, colores y tipografía                   |
+| `dia-07.html`             | Box Model: padding, border y margin                |
+| `dia-08.html`             | Flexbox — layouts en una dimensión                 |
+| `dia-09.html`             | CSS Grid — layouts en dos dimensiones              |
+| `proyecto-semana-02.html` | Repaso + Proyecto: estilizar el perfil de Semana 1 |
