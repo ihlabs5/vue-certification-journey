@@ -1,0 +1,100 @@
+/* ── RESET BÁSICO ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── BASE ── */
+body {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #111827;
+  background-color: #f9fafb;
+  padding: 20px;
+}
+
+/* ── SELECTOR DE ETIQUETA ── */
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #5467c4;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #4b5563;
+  margin-bottom: 8px;
+}
+
+/* ── SELECTOR DE ID ── */
+#encabezado {
+  background-color: #0e3a99;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+#encabezado h1 {
+  color: #ffffff;
+}
+
+/* ── SELECTORES DE CLASE ── */
+.subtitulo {
+  color: #bfdbfe;
+  font-size: 18px;
+}
+
+.destacado {
+  color: #1a56db;
+  font-weight: 600;
+}
+
+.alerta {
+  background-color: #fef3c7;
+  padding: 8px;
+}
+
+/* ── COLORES ── */
+.color-hex {
+  color: #1a56db;
+}
+
+.color-rgb {
+  color: rgb(220, 38, 38);
+}
+
+.color-fondo {
+  background-color: #ecfdf5;
+  color: #065f46;
+  padding: 8px;
+}
+
+/* ── TIPOGRAFÍA ── */
+.texto-grande {
+  font-size: 24px;
+}
+
+.texto-bold {
+  font-weight: bold;
+}
+
+.texto-italic {
+  font-style: italic;
+}
+
+.texto-centrado {
+  text-align: center;
+}
+
+.texto-mayusculas {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
