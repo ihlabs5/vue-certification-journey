@@ -68,3 +68,4 @@ vue-certification-journey/
 | Archivo     | Contenido                              |
 | ----------- | -------------------------------------- |
 | `dia-11.js` | Variables, Tipos de Datos y Operadores |
+| `dia-12.js` | Funciones y Scope                      |
