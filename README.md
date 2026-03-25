@@ -69,3 +69,4 @@ vue-certification-journey/
 | ----------- | -------------------------------------- |
 | `dia-11.js` | Variables, Tipos de Datos y Operadores |
 | `dia-12.js` | Funciones y Scope                      |
+| `dia-13.js` | Arrays y sus Métodos                   |
