@@ -62,3 +62,9 @@ vue-certification-journey/
 | `dia-08.html`             | Flexbox — layouts en una dimensión                 |
 | `dia-09.html`             | CSS Grid — layouts en dos dimensiones              |
 | `proyecto-semana-02.html` | Repaso + Proyecto: estilizar el perfil de Semana 1 |
+
+## 📁 Contenido — Semana 3: Javascript
+
+| Archivo     | Contenido                              |
+| ----------- | -------------------------------------- |
+| `dia-11.js` | Variables, Tipos de Datos y Operadores |
