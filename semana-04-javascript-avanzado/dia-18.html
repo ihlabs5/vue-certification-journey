@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Promesas y Fetch</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9fafb;
+        padding: 24px;
+        color: #111827;
+      }
+      h1 {
+        color: #1a56db;
+        margin-bottom: 24px;
+      }
+      h2 {
+        color: #374151;
+        margin-bottom: 12px;
+        font-size: 18px;
+      }
+      .tarjeta {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        max-width: 700px;
+      }
+      button {
+        background: #1a56db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 4px;
+        font-size: 14px;
+      }
+      button:hover {
+        background: #1e40af;
+      }
+      button:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+      }
+      button.gris {
+        background: #6b7280;
+      }
+      .spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #e5e7eb;
+        border-top-color: #1a56db;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .estado {
+        padding: 10px 16px;
+        border-radius: 6px;
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      .estado.cargando {
+        background: #eff6ff;
+        color: #1a56db;
+      }
+      .estado.exito {
+        background: #ecfdf5;
+        color: #065f46;
+      }
+      .estado.error {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      .usuario-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        background: #f9fafb;
+        border-radius: 8px;
+        margin: 8px 0;
+        border: 1px solid #e5e7eb;
+      }
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #1a56db;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .usuario-info h3 {
+        font-size: 16px;
+        margin-bottom: 2px;
+      }
+      .usuario-info p {
+        color: #6b7280;
+        font-size: 13px;
+      }
+      .post-item {
+        padding: 12px;
+        border-left: 3px solid #1a56db;
+        margin-bottom: 10px;
+        background: #f9fafb;
+        border-radius: 0 6px 6px 0;
+      }
+      .post-item h3 {
+        font-size: 15px;
+        color: #111827;
+        margin-bottom: 4px;
+        text-transform: capitalize;
+      }
+      .post-item p {
+        font-size: 13px;
+        color: #6b7280;
+      }
+      input {
+        padding: 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        font-size: 15px;
+        width: 80px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .stat-box {
+        background: #eff6ff;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+      }
+      .stat-num {
+        font-size: 28px;
+        font-weight: bold;
+        color: #1a56db;
+      }
+      .stat-label {
+        font-size: 12px;
+        color: #6b7280;
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Promesas y Fetch — APIs Reales</h1>
+    <p style="color: #6b7280; margin-bottom: 24px">
+      Usando <strong>JSONPlaceholder</strong> — API gratuita para practicar
+    </p>
+
+    <!-- SECCIÓN 1: Cargar un usuario -->
+    <div class="tarjeta">
+      <h2>1. Cargar usuario por ID</h2>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 12px;
+        "
+      >
+        <label style="font-size: 14px">ID:</label>
+        <input type="number" id="input-id" value="1" min="1" max="10" />
+        <button id="btn-cargar-usuario">Cargar usuario</button>
+      </div>
+      <div id="estado-usuario"></div>
+      <div id="resultado-usuario"></div>
+    </div>
+
+    <!-- SECCIÓN 2: Cargar lista de posts -->
+    <div class="tarjeta">
+      <h2>2. Posts de un usuario</h2>
+      <button id="btn-cargar-posts">Cargar posts del usuario 1</button>
+      <div id="estado-posts"></div>
+      <div id="resultado-posts"></div>
+    </div>
+
+    <!-- SECCIÓN 3: Múltiples peticiones en paralelo -->
+    <div class="tarjeta">
+      <h2>3. Cargar todo en paralelo</h2>
+      <p style="color: #6b7280; font-size: 14px; margin-bottom: 12px">
+        Carga usuarios, posts y todos al mismo tiempo con Promise.all
+      </p>
+      <button id="btn-paralelo">Cargar todo en paralelo</button>
+      <div id="estado-paralelo"></div>
+      <div id="resultado-paralelo"></div>
+    </div>
+
+    <!-- SECCIÓN 4: Simular error -->
+    <div class="tarjeta">
+      <h2>4. Manejo de errores</h2>
+      <button id="btn-error-404">Simular error 404</button>
+      <button id="btn-error-red" class="gris">Simular error de red</button>
+      <div id="estado-error"></div>
+    </div>
+
+    <script>
+      // ── UTILIDADES ─────────────────────────────────
+      const BASE_URL = "https://jsonplaceholder.typicode.com";
+
+      const mostrarEstado = (id, tipo, mensaje) => {
+        const div = document.getElementById(id);
+        const spinner =
+          tipo === "cargando" ? `<span class="spinner"></span>` : "";
+        div.innerHTML = `<div class="estado ${tipo}">${spinner}${mensaje}</div>`;
+      };
+
+      const limpiarDiv = (id) => {
+        document.getElementById(id).innerHTML = "";
+      };
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 1: Cargar usuario
+      // ════════════════════════════════════════════
+      const obtenerUsuario = async (id) => {
+        const response = await fetch(`${BASE_URL}/users/${id}`);
+        if (!response.ok)
+          throw new Error(`Usuario ${id} no encontrado (${response.status})`);
+        return response.json();
+      };
+
+      document
+        .getElementById("btn-cargar-usuario")
+        .addEventListener("click", async () => {
+          const id = document.getElementById("input-id").value;
+          const btn = document.getElementById("btn-cargar-usuario");
+
+          // Estado: cargando
+          btn.disabled = true;
+          mostrarEstado("estado-usuario", "cargando", "Cargando usuario...");
+          limpiarDiv("resultado-usuario");
+
+          try {
+            const usuario = await obtenerUsuario(id);
+
+            // Estado: éxito
+            mostrarEstado(
+              "estado-usuario",
+              "exito",
+              `✅ Usuario cargado correctamente`,
+            );
+
+            // Renderizar usuario
+            const iniciales = usuario.name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+              .slice(0, 2);
+            document.getElementById("resultado-usuario").innerHTML = `
+            <div class="usuario-card">
+              <div class="avatar">${iniciales}</div>
+              <div class="usuario-info">
+                <h3>${usuario.name}</h3>
+                <p>📧 ${usuario.email}</p>
+                <p>🌐 ${usuario.website}</p>
+                <p>🏢 ${usuario.company.name}</p>
+                <p>📍 ${usuario.address.city}</p>
+              </div>
+            </div>
+          `;
+          } catch (error) {
+            mostrarEstado(
+              "estado-usuario",
+              "error",
+              `❌ Error: ${error.message}`,
+            );
+          } finally {
+            btn.disabled = false;
+          }
+        });
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 2: Posts del usuario
+      // ════════════════════════════════════════════
+      const obtenerPosts = async (userId) => {
+        const response = await fetch(
+          `${BASE_URL}/posts?userId=${userId}&_limit=4`,
+        );
+        if (!response.ok) throw new Error(`Error al cargar posts`);
+        return response.json();
+      };
+
+      document
+        .getElementById("btn-cargar-posts")
+        .addEventListener("click", async () => {
+          const btn = document.getElementById("btn-cargar-posts");
+          btn.disabled = true;
+          mostrarEstado("estado-posts", "cargando", "Cargando posts...");
+          limpiarDiv("resultado-posts");
+
+          try {
+            const posts = await obtenerPosts(1);
+            mostrarEstado(
+              "estado-posts",
+              "exito",
+              `✅ ${posts.length} posts cargados`,
+            );
+
+            const html = posts
+              .map(
+                (post) => `
+            <div class="post-item">
+              <h3>${post.title}</h3>
+              <p>${post.body.slice(0, 100)}...</p>
+            </div>
+          `,
+              )
+              .join("");
+
+            document.getElementById("resultado-posts").innerHTML = html;
+          } catch (error) {
+            mostrarEstado("estado-posts", "error", `❌ ${error.message}`);
+          } finally {
+            btn.disabled = false;
+          }
+        });
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 3: Peticiones en paralelo
+      // ════════════════════════════════════════════
+      document
+        .getElementById("btn-paralelo")
+        .addEventListener("click", async () => {
+          const btn = document.getElementById("btn-paralelo");
+          btn.disabled = true;
+          mostrarEstado(
+            "estado-paralelo",
+            "cargando",
+            "Cargando todo en paralelo...",
+          );
+          limpiarDiv("resultado-paralelo");
+
+          const inicio = Date.now();
+
+          try {
+            // Promise.all — ejecuta todas las peticiones AL MISMO TIEMPO
+            // Si alguna falla, todas fallan
+            const [usuarios, posts, todos] = await Promise.all([
+              fetch(`${BASE_URL}/users?_limit=5`).then((r) => r.json()),
+              fetch(`${BASE_URL}/posts?_limit=10`).then((r) => r.json()),
+              fetch(`${BASE_URL}/todos?_limit=20`).then((r) => r.json()),
+            ]);
+
+            const tiempo = Date.now() - inicio;
+            mostrarEstado(
+              "estado-paralelo",
+              "exito",
+              `✅ Todo cargado en ${tiempo}ms — en paralelo, no secuencial`,
+            );
+
+            const todosCompletados = todos.filter((t) => t.completed).length;
+
+            document.getElementById("resultado-paralelo").innerHTML = `
+            <div class="grid">
+              <div class="stat-box">
+                <div class="stat-num">${usuarios.length}</div>
+                <div class="stat-label">Usuarios cargados</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">${posts.length}</div>
+                <div class="stat-label">Posts cargados</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">${todosCompletados}/${todos.length}</div>
+                <div class="stat-label">Tareas completadas</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">${tiempo}ms</div>
+                <div class="stat-label">Tiempo total</div>
+              </div>
+            </div>
+          `;
+          } catch (error) {
+            mostrarEstado("estado-paralelo", "error", `❌ ${error.message}`);
+          } finally {
+            btn.disabled = false;
+          }
+        });
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 4: Manejo de errores
+      // ════════════════════════════════════════════
+      document
+        .getElementById("btn-error-404")
+        .addEventListener("click", async () => {
+          mostrarEstado(
+            "estado-error",
+            "cargando",
+            "Haciendo petición a ruta inexistente...",
+          );
+
+          try {
+            const response = await fetch(
+              `${BASE_URL}/usuarios-que-no-existen/999`,
+            );
+
+            // fetch NO lanza error por 404 automáticamente
+            // hay que verificar response.ok manualmente
+            if (!response.ok) {
+              throw new Error(
+                `Error ${response.status}: ${response.statusText}`,
+              );
+            }
+
+            const data = await response.json();
+            mostrarEstado("estado-error", "exito", "Éxito inesperado");
+          } catch (error) {
+            mostrarEstado(
+              "estado-error",
+              "error",
+              `❌ Error capturado: ${error.message}`,
+            );
+          }
+        });
+
+      document
+        .getElementById("btn-error-red")
+        .addEventListener("click", async () => {
+          mostrarEstado(
+            "estado-error",
+            "cargando",
+            "Intentando URL inválida...",
+          );
+
+          try {
+            // URL completamente inválida — simula error de red
+            await fetch("https://esta-url-no-existe-123456789.com/api");
+            mostrarEstado("estado-error", "exito", "Éxito inesperado");
+          } catch (error) {
+            mostrarEstado(
+              "estado-error",
+              "error",
+              `❌ Error de red: ${error.message}`,
+            );
+          }
+        });
+    </script>
+  </body>
+</html>

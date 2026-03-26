@@ -75,7 +75,8 @@ vue-certification-journey/
 
 ## 📁 Contenido — Semana 4: Javascript avanzado
 
-| Archivo       | Contenido                     |
-| ------------- | ----------------------------- |
-| `dia-16.html` | El DOM — conectar JS con HTML |
-| `dia-17.html` | Eventos del navegador         |
+| Archivo       | Contenido                        |
+| ------------- | -------------------------------- |
+| `dia-16.html` | El DOM — conectar JS con HTML    |
+| `dia-17.html` | Eventos del navegador            |
+| `dia-18.html` | Promesas y fetch — consumir APIs |
