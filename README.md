@@ -78,3 +78,4 @@ vue-certification-journey/
 | Archivo       | Contenido                     |
 | ------------- | ----------------------------- |
 | `dia-16.html` | El DOM — conectar JS con HTML |
+| `dia-17.html` | Eventos del navegador         |

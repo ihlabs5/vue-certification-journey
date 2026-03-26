@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Eventos del Navegador</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9fafb;
+        padding: 24px;
+        color: #111827;
+      }
+      h1 {
+        color: #1a56db;
+        margin-bottom: 24px;
+      }
+      h2 {
+        color: #374151;
+        margin-bottom: 12px;
+        font-size: 18px;
+      }
+      .tarjeta {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        max-width: 600px;
+      }
+      button {
+        background: #1a56db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 4px;
+        font-size: 14px;
+      }
+      button:hover {
+        background: #1e40af;
+      }
+      button.gris {
+        background: #6b7280;
+      }
+      button.verde {
+        background: #10b981;
+      }
+      button.rojo {
+        background: #ef4444;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        font-size: 15px;
+        margin-bottom: 8px;
+      }
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #1a56db;
+      }
+      .log {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        border-radius: 6px;
+        padding: 12px;
+        font-family: monospace;
+        font-size: 13px;
+        max-height: 150px;
+        overflow-y: auto;
+        margin-top: 8px;
+      }
+      .log p {
+        margin: 2px 0;
+      }
+      .badge {
+        display: inline-block;
+        background: #eff6ff;
+        color: #1a56db;
+        border-radius: 20px;
+        padding: 3px 12px;
+        font-size: 13px;
+        font-weight: 600;
+        margin: 4px 2px;
+      }
+      .caja-hover {
+        background: #eff6ff;
+        border: 2px solid #1a56db;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-top: 8px;
+      }
+      .caja-hover:hover {
+        background: #1a56db;
+        color: white;
+      }
+      #tecla-display {
+        font-size: 32px;
+        font-weight: bold;
+        color: #1a56db;
+        text-align: center;
+        padding: 20px;
+        background: #eff6ff;
+        border-radius: 8px;
+        margin-top: 8px;
+      }
+      .error {
+        color: #ef4444;
+        font-size: 13px;
+        margin-top: 4px;
+      }
+      .exito {
+        color: #10b981;
+        font-size: 13px;
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Eventos del Navegador</h1>
+
+    <!-- SECCIÓN 1: Eventos de clic -->
+    <div class="tarjeta">
+      <h2>1. Eventos de clic</h2>
+      <button id="btn-simple">Clic simple</button>
+      <button id="btn-doble" class="gris">Doble clic</button>
+      <button id="btn-contador" class="verde">
+        Clics: <span id="num-clics">0</span>
+      </button>
+      <button id="btn-reset" class="rojo">Reset</button>
+      <div class="log" id="log-clics"></div>
+    </div>
+
+    <!-- SECCIÓN 2: Eventos de mouse -->
+    <div class="tarjeta">
+      <h2>2. Eventos de mouse</h2>
+      <div class="caja-hover" id="caja-mouse">Pasá el mouse por acá</div>
+      <div class="log" id="log-mouse"></div>
+    </div>
+
+    <!-- SECCIÓN 3: Eventos de teclado -->
+    <div class="tarjeta">
+      <h2>3. Eventos de teclado</h2>
+      <p style="margin-bottom: 8px; color: #6b7280">
+        Presioná cualquier tecla:
+      </p>
+      <div id="tecla-display">⌨️</div>
+      <div class="log" id="log-teclado"></div>
+    </div>
+
+    <!-- SECCIÓN 4: Eventos de input en tiempo real -->
+    <div class="tarjeta">
+      <h2>4. Input en tiempo real</h2>
+      <input
+        type="text"
+        id="input-nombre"
+        placeholder="Escribí tu nombre de usuario..."
+      />
+      <div id="preview-nombre" style="color: #6b7280; font-size: 14px">
+        Esperando entrada...
+      </div>
+      <div
+        id="contador-chars"
+        style="color: #9ca3af; font-size: 12px; margin-top: 4px"
+      >
+        0 caracteres
+      </div>
+    </div>
+
+    <!-- SECCIÓN 5: Formulario con validación -->
+    <div class="tarjeta">
+      <h2>5. Formulario con validación</h2>
+      <form id="mi-formulario">
+        <label
+          style="
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+          "
+        >
+          Email:
+        </label>
+        <input type="text" id="input-email" placeholder="tu@email.com" />
+        <div id="error-email" class="error"></div>
+
+        <label
+          style="
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+            margin-top: 12px;
+          "
+        >
+          Tecnología favorita:
+        </label>
+        <input type="text" id="input-tech" placeholder="Ej: Vue.js" />
+        <div id="error-tech" class="error"></div>
+
+        <div style="margin-top: 16px">
+          <button type="submit">Enviar</button>
+          <button type="button" id="btn-limpiar" class="gris">Limpiar</button>
+        </div>
+        <div id="resultado-form" style="margin-top: 12px"></div>
+      </form>
+    </div>
+
+    <!-- SECCIÓN 6: Delegación de eventos -->
+    <div class="tarjeta">
+      <h2>6. Lista con delegación de eventos</h2>
+      <div id="contenedor-techs">
+        <span class="badge" data-tech="HTML">HTML ✅</span>
+        <span class="badge" data-tech="CSS">CSS ✅</span>
+        <span class="badge" data-tech="JavaScript">JavaScript 🔄</span>
+        <span class="badge" data-tech="Vue.js">Vue.js ⏳</span>
+      </div>
+      <div
+        id="tech-seleccionada"
+        style="margin-top: 12px; color: #6b7280; font-size: 14px"
+      >
+        Clic en una tecnología para ver su estado
+      </div>
+    </div>
+
+    <script>
+      // ── UTILIDAD: agregar log ──────────────────────
+      const agregarLog = (logId, mensaje) => {
+        const log = document.getElementById(logId);
+        const p = document.createElement("p");
+        p.textContent = `→ ${mensaje}`;
+        log.appendChild(p);
+        log.scrollTop = log.scrollHeight; // auto-scroll al final
+      };
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 1: Eventos de clic
+      // ════════════════════════════════════════════
+      let clics = 0;
+
+      document.getElementById("btn-simple").addEventListener("click", () => {
+        agregarLog("log-clics", "Clic simple detectado!");
+      });
+
+      document.getElementById("btn-doble").addEventListener("dblclick", () => {
+        agregarLog("log-clics", "Doble clic detectado!");
+      });
+
+      document.getElementById("btn-contador").addEventListener("click", () => {
+        clics++;
+        document.getElementById("num-clics").textContent = clics;
+        agregarLog("log-clics", `Contador actualizado: ${clics}`);
+      });
+
+      document.getElementById("btn-reset").addEventListener("click", () => {
+        clics = 0;
+        document.getElementById("num-clics").textContent = 0;
+        agregarLog("log-clics", "Contador reseteado");
+      });
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 2: Eventos de mouse
+      // ════════════════════════════════════════════
+      const cajaMouse = document.getElementById("caja-mouse");
+
+      cajaMouse.addEventListener("mouseenter", () => {
+        cajaMouse.textContent = "¡Mouse adentro! 🖱️";
+        agregarLog("log-mouse", "mouseenter — mouse entró");
+      });
+
+      cajaMouse.addEventListener("mouseleave", () => {
+        cajaMouse.textContent = "Pasá el mouse por acá";
+        agregarLog("log-mouse", "mouseleave — mouse salió");
+      });
+
+      cajaMouse.addEventListener("click", () => {
+        agregarLog("log-mouse", "click — clic dentro de la caja");
+      });
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 3: Eventos de teclado
+      // ════════════════════════════════════════════
+      const teclaDisplay = document.getElementById("tecla-display");
+
+      document.addEventListener("keydown", (event) => {
+        // No interferir con el campo de texto
+        if (document.activeElement.tagName === "INPUT") return;
+
+        teclaDisplay.textContent = event.key;
+        agregarLog(
+          "log-teclado",
+          `keydown: "${event.key}" — código: ${event.code}`,
+        );
+
+        // Detectar combinaciones de teclas
+        if (event.ctrlKey && event.key === "s") {
+          event.preventDefault();
+          agregarLog("log-teclado", "Ctrl+S detectado (guardado simulado)");
+        }
+      });
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 4: Input en tiempo real
+      // ════════════════════════════════════════════
+      const inputNombre = document.getElementById("input-nombre");
+      const previewNombre = document.getElementById("preview-nombre");
+      const contadorChars = document.getElementById("contador-chars");
+
+      inputNombre.addEventListener("input", (event) => {
+        const valor = event.target.value;
+        const largo = valor.length;
+
+        // Actualizar preview en tiempo real
+        if (valor.trim() === "") {
+          previewNombre.textContent = "Esperando entrada...";
+          previewNombre.style.color = "#6B7280";
+        } else {
+          previewNombre.textContent = `Hola, ${valor}! 👋`;
+          previewNombre.style.color = "#1A56DB";
+          previewNombre.style.fontWeight = "600";
+        }
+
+        // Actualizar contador de caracteres
+        contadorChars.textContent = `${largo} caracteres`;
+        contadorChars.style.color = largo > 20 ? "#EF4444" : "#9CA3AF";
+      });
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 5: Formulario con validación
+      // ════════════════════════════════════════════
+      const formulario = document.getElementById("mi-formulario");
+      const inputEmail = document.getElementById("input-email");
+      const inputTech = document.getElementById("input-tech");
+
+      // Validar email mientras escribe
+      inputEmail.addEventListener("input", () => {
+        const errorDiv = document.getElementById("error-email");
+        const valor = inputEmail.value;
+
+        if (valor.length > 0 && !valor.includes("@")) {
+          errorDiv.textContent = "El email debe contener @";
+          inputEmail.style.borderColor = "#EF4444";
+        } else {
+          errorDiv.textContent = "";
+          inputEmail.style.borderColor =
+            valor.length > 0 ? "#10B981" : "#E5E7EB";
+        }
+      });
+
+      // Validar tech mientras escribe
+      inputTech.addEventListener("input", () => {
+        const errorDiv = document.getElementById("error-tech");
+        const valor = inputTech.value;
+
+        if (valor.length > 0 && valor.length < 2) {
+          errorDiv.textContent = "Mínimo 2 caracteres";
+          inputTech.style.borderColor = "#EF4444";
+        } else {
+          errorDiv.textContent = "";
+          inputTech.style.borderColor =
+            valor.length > 0 ? "#10B981" : "#E5E7EB";
+        }
+      });
+
+      // Submit del formulario
+      formulario.addEventListener("submit", (event) => {
+        event.preventDefault(); // ← prevenir recarga de página
+
+        const email = inputEmail.value.trim();
+        const tech = inputTech.value.trim();
+        const resultado = document.getElementById("resultado-form");
+
+        // Validación final
+        if (!email || !email.includes("@")) {
+          resultado.innerHTML = `<span class="error">❌ Email inválido</span>`;
+          return;
+        }
+        if (!tech || tech.length < 2) {
+          resultado.innerHTML = `<span class="error">❌ Tecnología inválida</span>`;
+          return;
+        }
+
+        // Éxito
+        resultado.innerHTML = `
+          <span class="exito">
+            ✅ Enviado! Email: ${email} — Tech favorita: ${tech}
+          </span>
+        `;
+      });
+
+      // Limpiar formulario
+      document.getElementById("btn-limpiar").addEventListener("click", () => {
+        inputEmail.value = "";
+        inputTech.value = "";
+        inputEmail.style.borderColor = "#E5E7EB";
+        inputTech.style.borderColor = "#E5E7EB";
+        document.getElementById("error-email").textContent = "";
+        document.getElementById("error-tech").textContent = "";
+        document.getElementById("resultado-form").innerHTML = "";
+      });
+
+      // ════════════════════════════════════════════
+      // SECCIÓN 6: Delegación de eventos
+      // ════════════════════════════════════════════
+
+      // En lugar de poner un listener en cada badge,
+      // ponemos UNO en el contenedor padre — esto es delegación
+      const contenedorTechs = document.getElementById("contenedor-techs");
+      const techSeleccionada = document.getElementById("tech-seleccionada");
+
+      const estadosTech = {
+        HTML: "✅ Completado — Semana 1",
+        CSS: "✅ Completado — Semana 2",
+        JavaScript: "🔄 En progreso — Semana 3-4",
+        "Vue.js": "⏳ Próximamente — Semana 5-7",
+      };
+
+      contenedorTechs.addEventListener("click", (event) => {
+        // event.target es el elemento exacto clickeado
+        const tech = event.target.dataset.tech; // lee el atributo data-tech
+
+        if (tech) {
+          techSeleccionada.textContent = `${tech}: ${estadosTech[tech]}`;
+          techSeleccionada.style.color = "#1A56DB";
+          techSeleccionada.style.fontWeight = "600";
+        }
+      });
+    </script>
+  </body>
+</html>
