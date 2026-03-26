@@ -28,8 +28,8 @@ vue-certification-journey/
 | #   | Tecnología                       | Estado        | Semana |
 | --- | -------------------------------- | ------------- | ------ |
 | 1   | HTML                             | ✅ Completado | 1      |
-| 2   | CSS                              | ✅ Pendiente  | 2      |
-| 3   | JavaScript                       | 🔄 Pendiente  | 3-4    |
+| 2   | CSS                              | ✅ Completado | 2      |
+| 3   | JavaScript                       | ✅ Completado | 3-4    |
 | 4   | Vue.js Core + Composition API    | ⏳ Pendiente  | 5-7    |
 | 5   | Vue Router + Pinia               | ⏳ Pendiente  | 8-9    |
 | 6   | Composables + patrones avanzados | ⏳ Pendiente  | 10     |
@@ -65,9 +65,10 @@ vue-certification-journey/
 
 ## 📁 Contenido — Semana 3: Javascript
 
-| Archivo     | Contenido                              |
-| ----------- | -------------------------------------- |
-| `dia-11.js` | Variables, Tipos de Datos y Operadores |
-| `dia-12.js` | Funciones y Scope                      |
-| `dia-13.js` | Arrays y sus Métodos                   |
-| `dia-14.js` | Objetos y Desestructuración            |
+| Archivo                 | Contenido                              |
+| ----------------------- | -------------------------------------- |
+| `dia-11.js`             | Variables, Tipos de Datos y Operadores |
+| `dia-12.js`             | Funciones y Scope                      |
+| `dia-13.js`             | Arrays y sus Métodos                   |
+| `dia-14.js`             | Objetos y Desestructuración            |
+| `proyecto-semana-03.js` | Repaso + Mini proyecto integrador JS   |
