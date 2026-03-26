@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>El DOM</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f9fafb;
+      }
+      .tarjeta {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 10px 0;
+        max-width: 500px;
+      }
+      .activo {
+        border-color: #1a56db;
+        background: #eff6ff;
+      }
+      .oculto {
+        display: none;
+      }
+      button {
+        background: #1a56db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 4px;
+      }
+      button.secundario {
+        background: #6b7280;
+      }
+      #contador {
+        font-size: 48px;
+        font-weight: bold;
+        color: #1a56db;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="titulo">Aprendiendo el DOM</h1>
+    <p class="descripcion">
+      JavaScript puede modificar cualquier elemento HTML.
+    </p>
+    <p class="descripcion">
+      Esta es la base de cómo funciona Vue.js internamente.
+    </p>
+
+    <div class="tarjeta" id="tarjeta-principal">
+      <h2>Mi progreso</h2>
+      <p id="semana-actual">Semana actual: 4</p>
+      <p id="estado">Estado: estudiando...</p>
+    </div>
+
+    <div class="tarjeta oculto" id="mensaje-secreto">
+      <p>🎉 ¡Encontraste el mensaje secreto del DOM!</p>
+    </div>
+
+    <!-- Botones para los ejercicios -->
+    <div style="margin-top: 20px">
+      <button onclick="cambiarTitulo()">Cambiar título</button>
+      <button onclick="toggleTarjeta()">Toggle tarjeta</button>
+      <button onclick="mostrarSecreto()" class="secundario">
+        Mostrar secreto
+      </button>
+    </div>
+
+    <!-- Contador -->
+    <div class="tarjeta" style="margin-top: 20px; text-align: center">
+      <h2>Contador de días estudiados</h2>
+      <div id="contador">0</div>
+      <div style="margin-top: 10px">
+        <button onclick="incrementar()">+ Día</button>
+        <button onclick="decrementar()" class="secundario">- Día</button>
+        <button onclick="resetear()" class="secundario">Reset</button>
+      </div>
+    </div>
+
+    <!-- Lista dinámica -->
+    <div class="tarjeta" style="margin-top: 20px">
+      <h2>Mi lista de tecnologías</h2>
+      <ul id="lista-techs"></ul>
+      <button onclick="agregarTech()">Agregar tecnología</button>
+    </div>
+
+    <script>
+      // ── SELECCIONAR ELEMENTOS ──────────────────────
+
+      // getElementById — el más rápido, solo IDs
+      const titulo = document.getElementById("titulo");
+      const semanaActual = document.getElementById("semana-actual");
+      const contador = document.getElementById("contador");
+
+      // querySelector — usa selectores CSS, retorna el primero
+      const primerDesc = document.querySelector(".descripcion");
+      const tarjetaPpal = document.querySelector("#tarjeta-principal");
+
+      // querySelectorAll — retorna TODOS los que coinciden (NodeList)
+      const descripciones = document.querySelectorAll(".descripcion");
+      console.log(`Hay ${descripciones.length} párrafos con clase descripcion`);
+
+      // ── LEER Y MODIFICAR CONTENIDO ─────────────────
+
+      // Leer contenido
+      console.log(titulo.textContent); // "Aprendiendo el DOM"
+      console.log(titulo.innerHTML); // "Aprendiendo el DOM"
+
+      // Diferencia: textContent vs innerHTML
+      // textContent → solo texto plano (más seguro)
+      // innerHTML   → puede incluir HTML (tener cuidado con XSS)
+
+      // ── FUNCIONES PARA LOS BOTONES ─────────────────
+
+      let cambiado = false;
+      function cambiarTitulo() {
+        if (!cambiado) {
+          titulo.textContent = "¡DOM modificado con JavaScript! 🎉";
+          titulo.style.color = "#1A56DB";
+          cambiado = true;
+        } else {
+          titulo.textContent = "Aprendiendo el DOM";
+          titulo.style.color = "";
+          cambiado = false;
+        }
+      }
+
+      function toggleTarjeta() {
+        tarjetaPpal.classList.toggle("activo");
+      }
+
+      function mostrarSecreto() {
+        const secreto = document.getElementById("mensaje-secreto");
+        secreto.classList.remove("oculto");
+      }
+
+      // ── CONTADOR ───────────────────────────────────
+      let cuenta = 0;
+
+      function actualizarContador() {
+        contador.textContent = cuenta;
+        contador.style.color = cuenta >= 15 ? "#10B981" : "#1A56DB";
+      }
+
+      function incrementar() {
+        cuenta++;
+        actualizarContador();
+      }
+
+      function decrementar() {
+        if (cuenta > 0) {
+          cuenta--;
+          actualizarContador();
+        }
+      }
+
+      function resetear() {
+        cuenta = 0;
+        actualizarContador();
+      }
+
+      // ── MODIFICAR ESTILOS ──────────────────────────
+
+      // Estilo inline (evitar en lo posible — mejor usar clases)
+      titulo.style.fontSize = "32px";
+
+      // Mejor: agregar/quitar/verificar clases
+      tarjetaPpal.classList.add("activo"); // agrega clase
+      tarjetaPpal.classList.remove("activo"); // quita clase
+      tarjetaPpal.classList.toggle("activo"); // alterna (si tiene la quita, si no la agrega)
+      tarjetaPpal.classList.contains("activo"); // true o false
+
+      // ── MODIFICAR ATRIBUTOS ────────────────────────
+      const link = document.querySelector("a");
+      if (link) {
+        link.setAttribute("href", "https://vuejs.org");
+        link.getAttribute("href"); // "https://vuejs.org"
+        link.removeAttribute("href");
+      }
+
+      // ── CREAR Y AGREGAR ELEMENTOS ─────────────────
+      const nuevaTarjeta = document.createElement("div");
+      nuevaTarjeta.className = "tarjeta";
+      nuevaTarjeta.innerHTML = `
+        <h3>Nueva tarjeta creada con JS</h3>
+        <p>Este elemento fue creado dinámicamente desde JavaScript.</p>
+      `;
+      document.body.appendChild(nuevaTarjeta);
+
+      // ── ELIMINAR ELEMENTOS ─────────────────────────
+      // elemento.remove()  → elimina el elemento
+      // padre.removeChild(hijo)  → elimina un hijo específico
+
+      // ── LISTA DINÁMICA ──────────────────────────────
+      const tecnologias = ["HTML ✅", "CSS ✅", "JavaScript 🔄", "Vue.js ⏳"];
+      const listaTechs = document.getElementById("lista-techs");
+
+      // Renderizar lista inicial
+      function renderizarLista() {
+        // Limpiar la lista actual
+        listaTechs.innerHTML = "";
+
+        // Crear un li por cada tecnología
+        tecnologias.forEach((tech) => {
+          const li = document.createElement("li");
+          li.textContent = tech;
+          li.style.padding = "6px 0";
+          li.style.borderBottom = "1px solid #E5E7EB";
+          listaTechs.appendChild(li);
+        });
+      }
+
+      renderizarLista();
+
+      // Agregar nueva tecnología
+      const techsExtra = ["Pinia ⏳", "Vue Router ⏳", "TypeScript ⏳"];
+      let indiceExtra = 0;
+
+      function agregarTech() {
+        if (indiceExtra < techsExtra.length) {
+          tecnologias.push(techsExtra[indiceExtra]);
+          indiceExtra++;
+          renderizarLista(); // re-renderizar toda la lista
+        }
+      }
+    </script>
+  </body>
+</html>

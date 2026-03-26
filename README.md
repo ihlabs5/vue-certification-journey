@@ -72,3 +72,9 @@ vue-certification-journey/
 | `dia-13.js`             | Arrays y sus Métodos                   |
 | `dia-14.js`             | Objetos y Desestructuración            |
 | `proyecto-semana-03.js` | Repaso + Mini proyecto integrador JS   |
+
+## 📁 Contenido — Semana 4: Javascript avanzado
+
+| Archivo       | Contenido                     |
+| ------------- | ----------------------------- |
+| `dia-16.html` | El DOM — conectar JS con HTML |
